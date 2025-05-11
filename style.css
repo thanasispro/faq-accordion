@@ -64,7 +64,7 @@ body {
   left: 0;
   width: 100%;
   height: 14.5rem;
-  background-image: url('./assets/images/background-pattern-mobile.svg');
+  background-image: url("./assets/images/background-pattern-mobile.svg");
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 0;
@@ -72,11 +72,11 @@ body {
 @media (min-width: 48rem) {
   .background-pattern {
     height: 20rem;
-    background-image: url('./assets/images/background-pattern-desktop.svg');
+    background-image: url("./assets/images/background-pattern-desktop.svg");
   }
 }
 .faq {
-  width: 20.4375rem;
+  width: 17.4375rem;
   background-color: white;
   border-radius: 0.5rem;
   padding: 1.5rem;
@@ -86,7 +86,7 @@ body {
 }
 @media (min-width: 48rem) {
   .faq {
-    width: 37.5rem;
+    width: 32.5rem;
     padding: 2.5rem;
   }
 }
