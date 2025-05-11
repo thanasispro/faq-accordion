@@ -13,15 +13,17 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div class="background-pattern"></div>
+    <div class="background-pattern" aria-hidden="true"></div>
 
     <main class="faq">
-      <div class="faq__header">
-        <img src="./assets/images/icon-star.svg" alt="" class="faq__icon" />
+      <header class="faq__header">
+        <img src="./assets/images/icon-star.svg" alt="Decorative star" class="faq__icon" aria-hidden="true" />
         <h1 class="faq__title">FAQs</h1>
-      </div>
+      </header>
 
-      <div class="accordion">
+      <section class="accordion">
+        <h2 class="visually-hidden">Frequently Asked Questions</h2>
+        
         <div class="accordion__item">
           <button
             class="accordion__header"
@@ -31,9 +33,9 @@
             <span class="accordion__question"
               >What is Frontend Mentor, and how will it help me?</span
             >
-            <span class="accordion__icon"></span>
+            <span class="accordion__icon" aria-hidden="true"></span>
           </button>
-          <div class="accordion__content" id="panel1" role="region">
+          <div class="accordion__content" id="panel1" role="region" aria-hidden="true">
             <p>
               Frontend Mentor offers realistic coding challenges to help
               developers improve their frontend coding skills with projects in
@@ -50,9 +52,9 @@
             aria-controls="panel2"
           >
             <span class="accordion__question">Is Frontend Mentor free?</span>
-            <span class="accordion__icon"></span>
+            <span class="accordion__icon" aria-hidden="true"></span>
           </button>
-          <div class="accordion__content" id="panel2" role="region">
+          <div class="accordion__content" id="panel2" role="region" aria-hidden="true">
             <p>
               Yes, Frontend Mentor offers both free and premium coding
               challenges, with the free option providing access to a range of
@@ -70,9 +72,9 @@
             <span class="accordion__question"
               >Can I use Frontend Mentor projects in my portfolio?</span
             >
-            <span class="accordion__icon"></span>
+            <span class="accordion__icon" aria-hidden="true"></span>
           </button>
-          <div class="accordion__content" id="panel3" role="region">
+          <div class="accordion__content" id="panel3" role="region" aria-hidden="true">
             <p>
               Yes, you can use projects completed on Frontend Mentor in your
               portfolio. It's an excellent way to showcase your skills to
@@ -91,9 +93,9 @@
               >How can I get help if I'm stuck on a Frontend Mentor
               challenge?</span
             >
-            <span class="accordion__icon"></span>
+            <span class="accordion__icon" aria-hidden="true"></span>
           </button>
-          <div class="accordion__content" id="panel4" role="region">
+          <div class="accordion__content" id="panel4" role="region" aria-hidden="true">
             <p>
               The best place to get help is inside Frontend Mentor's Discord
               community. There's a help channel where you can ask questions and
@@ -101,7 +103,7 @@
             </p>
           </div>
         </div>
-      </div>
+      </section>
     </main>
 
     <script>
@@ -109,22 +111,49 @@
         const accordionHeaders =
           document.querySelectorAll(".accordion__header");
 
-        accordionHeaders.forEach((header) => {
+        accordionHeaders.forEach((header, index) => {
+          // Set initial aria-hidden state on content panels
+          const contentId = header.getAttribute("aria-controls");
+          const content = document.getElementById(contentId);
+          
           header.addEventListener("click", () => {
             const isExpanded = header.getAttribute("aria-expanded") === "true";
-            const contentId = header.getAttribute("aria-controls");
-            const content = document.getElementById(contentId);
-
+            
             // Toggle current accordion
             header.setAttribute("aria-expanded", !isExpanded);
             content.setAttribute("aria-hidden", isExpanded);
           });
 
-          // Enable keyboard navigation
+          // Enhanced keyboard navigation
           header.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              header.click();
+            const headerButtons = Array.from(accordionHeaders);
+            const currentIndex = headerButtons.indexOf(e.target);
+            let nextIndex;
+
+            switch (e.key) {
+              case "Enter":
+              case " ":
+                e.preventDefault();
+                header.click();
+                break;
+              case "ArrowDown":
+                e.preventDefault();
+                nextIndex = (currentIndex + 1) % headerButtons.length;
+                headerButtons[nextIndex].focus();
+                break;
+              case "ArrowUp":
+                e.preventDefault();
+                nextIndex = (currentIndex - 1 + headerButtons.length) % headerButtons.length;
+                headerButtons[nextIndex].focus();
+                break;
+              case "Home":
+                e.preventDefault();
+                headerButtons[0].focus();
+                break;
+              case "End":
+                e.preventDefault();
+                headerButtons[headerButtons.length - 1].focus();
+                break;
             }
           });
         });
