@@ -1,0 +1,199 @@
+@font-face {
+  font-family: "Work Sans";
+  src: url("./assets/fonts/WorkSans-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Work Sans";
+  src: url("./assets/fonts/WorkSans-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Work Sans";
+  src: url("./assets/fonts/static/WorkSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Work Sans";
+  src: url("./assets/fonts/static/WorkSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Work Sans";
+  src: url("./assets/fonts/static/WorkSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+html {
+  font-size: 100%;
+}
+body {
+  font-family: "Work Sans", sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: hsl(275, 100%, 97%);
+  color: hsl(292, 42%, 14%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 0.0625rem;
+  margin: -0.0625rem;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 0.0625rem;
+  white-space: nowrap;
+}
+.background-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 14.5rem;
+  background-image: url('./assets/images/background-pattern-mobile.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 0;
+}
+@media (min-width: 48rem) {
+  .background-pattern {
+    height: 20rem;
+    background-image: url('./assets/images/background-pattern-desktop.svg');
+  }
+}
+.faq {
+  width: 20.4375rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 1rem 3.125rem rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  position: relative;
+}
+@media (min-width: 48rem) {
+  .faq {
+    width: 37.5rem;
+    padding: 2.5rem;
+  }
+}
+.faq__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.faq__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+@media (min-width: 48rem) {
+  .faq__icon {
+    width: 2.1875rem;
+    height: 2.1875rem;
+  }
+}
+.faq__title {
+  font-size: 2rem;
+  margin: 0;
+  color: hsl(292, 42%, 14%);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+@media (min-width: 48rem) {
+  .faq__title {
+    font-size: 3.5rem;
+  }
+}
+.accordion {
+  width: 100%;
+}
+.accordion__item {
+  margin-bottom: 1rem;
+  border-bottom: 0.0625rem solid hsl(275, 100%, 97%);
+}
+.accordion__item:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+.accordion__header {
+  background: transparent;
+  padding: 0.9375rem 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: hsl(292, 42%, 14%);
+  transition: color 0.2s ease;
+}
+.accordion__header:hover,
+.accordion__header:focus {
+  color: hsl(280.9, 83%, 53.9%);
+  outline: none;
+}
+.accordion__header:focus-visible {
+  outline: 0.125rem solid hsl(280.9, 83%, 53.9%);
+  outline-offset: 0.125rem;
+  border-radius: 0.25rem;
+}
+.accordion__header[aria-expanded="true"] .accordion__icon {
+  transform: rotate(180deg);
+}
+.accordion__header[aria-expanded="true"] .accordion__icon {
+  background-image: url("./assets/images/icon-minus.svg");
+}
+.accordion__question {
+  flex-grow: 1;
+  padding-right: 0.9375rem;
+}
+.accordion__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url("./assets/images/icon-plus.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+.accordion__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: hsl(292, 16%, 49%);
+}
+.accordion__content[aria-hidden="false"] {
+  max-height: 31.25rem;
+  padding-bottom: 0.9375rem;
+}
+.accordion__content p {
+  margin: 0;
+  line-height: 1.6;
+}

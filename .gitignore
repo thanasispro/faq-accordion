@@ -9,10 +9,6 @@ build/
 *.min.js
 *.min.css
 
-# Compiled CSS (if generating from LESS)
-*.css
-*.css.map
-
 # Environment variables
 .env
 .env.local
